@@ -1,0 +1,10 @@
+<project>
+	<app main="Main" path="bin" file="Haxe" />
+	<window background="#000000" fps="60"/>
+	
+	<haxedef name="MULTIPLAYER" />
+	
+	<source path="src" />
+	<haxelib name="openfl" />
+	<haxelib name="haxe-ws" />
+</project>
