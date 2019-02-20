@@ -1,0 +1,4 @@
+-main Client
+-lib hxnodejs
+-lib haxe-ws
+-js client.js
