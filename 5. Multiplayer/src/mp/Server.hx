@@ -4,7 +4,7 @@ import mp.Message;
 import mp.Command;
 import game.*;
 import haxe.*;
-import js.node.events.EventEmitter;
+import mp.Ws;
 
 using Lambda;
 
@@ -19,7 +19,7 @@ class Server
 		var world = new World();
 		var ws = new WebSocketServer({port:8888});
 
-		ws.on('connection', function(cnx:Connection) 
+		ws.on('connection', function(cnx:WebSocket) 
 		{
 			var client = new Client(cnx);
 			clients.push(client);
@@ -88,22 +88,11 @@ class Server
 
 class Client 
 {
-	public var connection(default, null):Connection;
+	public var connection(default, null):WebSocket;
 	public var player:Object;
 
 	public function new(connection)
 	{
 		this.connection = connection;
 	}
-}
-
-extern class Connection extends EventEmitter<Connection> 
-{
-	function send(m:String):Void;
-}
-
-@:jsRequire('ws','Server')
-extern class WebSocketServer extends EventEmitter<WebSocketServer> 
-{
-	function new(?config:Dynamic);
 }
